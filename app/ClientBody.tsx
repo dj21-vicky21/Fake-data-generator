@@ -31,7 +31,6 @@ export default function ClientBody() {
 
   const handleFieldsChange = (newFields: Field[]) => {
     setFields(newFields);
-    // Don't auto-generate data here
   };
 
   const handleGenerateData = () => {
