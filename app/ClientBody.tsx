@@ -23,7 +23,6 @@ export default function ClientBody() {
   // Initialize with default fields when category changes
   useEffect(() => {
     setFields(selectedCategory.defaultFields);
-    // Don't auto-generate data here
   }, [selectedCategory]);
 
   const handleCategoryChange = (category: Category) => {
