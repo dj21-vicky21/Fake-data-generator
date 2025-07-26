@@ -26,9 +26,6 @@ export default function ClientBody() {
     // Don't auto-generate data here
   }, [selectedCategory]);
 
-  // Don't auto-generate data when fields change
-  // We removed the useEffect that was generating data on fields or recordCount change
-
   const handleCategoryChange = (category: Category) => {
     setSelectedCategory(category);
   };
