@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Copy, Download, RefreshCw } from "lucide-react";
@@ -21,6 +20,7 @@ export function DataPreview({ data, onRefresh, recordCount }: DataPreviewProps) 
       await navigator.clipboard.writeText(formattedData);
       toast.success("Copied to clipboard!");
     } catch (error) {
+      console.error("--> ~ handleCopy ~ error:", error)
       toast.error("Failed to copy to clipboard");
     }
   };
@@ -69,7 +69,7 @@ export function DataPreview({ data, onRefresh, recordCount }: DataPreviewProps) 
       <div className="flex flex-col gap-1 pr-[120px]">
         <h2 className="font-semibold tracking-tight text-2xl">Preview Code</h2>
         <p className="text-sm text-muted-foreground">
-          View the generated data in JSON format ({recordCount} records)
+          View the generated data in JSON format ({data.length} records)
         </p>
       </div>
       <div className="flex-1 relative overflow-hidden">

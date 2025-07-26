@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSubContent } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { MoreHorizontal, Plus, Link as LinkIcon, X, Pencil, Check, ChevronRight } from "lucide-react";
+import { MoreHorizontal, Plus, Link as LinkIcon, X, Pencil, Check } from "lucide-react";
 import { Field, DataType } from "@/lib/types";
 import { getAvailableCategories, getAvailableMethods } from "@/lib/faker-utils";
 
@@ -28,10 +28,6 @@ export function FieldCustomizer({ fields, onFieldsChange }: FieldCustomizerProps
       description: ""
     }
   });
-
-  // For connection dropdowns
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [showConnectionMethods, setShowConnectionMethods] = useState(false);
 
   const dataTypes: DataType[] = ["string", "number", "boolean", "date", "array", "uuid", "image"];
   const badgeColors: Record<DataType, string> = {
