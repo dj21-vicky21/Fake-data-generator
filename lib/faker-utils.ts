@@ -88,7 +88,7 @@ const fakerFunctions: Record<string, Record<string, () => string | number | bool
     name: () => faker.company.name(),
     catchPhrase: () => faker.company.catchPhrase(),
     bs: () => faker.company.buzzPhrase(),
-    suffixes: () => faker.company.suffixes().join(', '),
+    suffixes: () => ['Inc.', 'LLC', 'Group', 'Corp.', 'Ltd.'].join(', '),
     buzzVerb: () => faker.company.buzzVerb(),
     buzzAdjective: () => faker.company.buzzAdjective(),
     buzzNoun: () => faker.company.buzzNoun(),
@@ -111,7 +111,7 @@ const fakerFunctions: Record<string, Record<string, () => string | number | bool
   },
   number: {
     int: () => faker.number.int({ min: 1, max: 1000 }),
-    float: () => faker.number.float({ min: 1, max: 1000, precision: 0.01 }),
+    float: () => faker.number.float({ min: 1, max: 1000, fractionDigits: 2 }),
     binary: () => faker.number.binary(8),
     octal: () => faker.number.octal(8),
     hex: () => faker.number.hex(8),
@@ -160,9 +160,13 @@ export function generateValue(field: Field): string | number | boolean | Array<s
     // Handle array types - generate an array of 3-5 items
     if (dataType === 'array') {
       const count = Math.floor(Math.random() * 3) + 3; // 3-5 items
-      const arr = [];
+      const arr: (string | number)[] = [];
       for (let i = 0; i < count; i++) {
-        arr.push(fakerFunction());
+        const value = fakerFunction();
+        // Only add string or number values to the array
+        if (typeof value === 'string' || typeof value === 'number') {
+          arr.push(value);
+        }
       }
       return arr;
     }
