@@ -12,7 +12,7 @@ interface DataPreviewProps {
   recordCount: number;
 }
 
-export function DataPreview({ data, onRefresh, recordCount }: DataPreviewProps) {
+export function DataPreview({ data, onRefresh }: DataPreviewProps) {
   const formattedData = JSON.stringify(data, null, 2);
 
   const handleCopy = async () => {
