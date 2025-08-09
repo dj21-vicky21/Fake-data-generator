@@ -31,9 +31,14 @@ export function RecordCountControl({
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value);
-    if (!isNaN(value)) {
-      setCount(Math.max(min, Math.min(max, value)));
+    const value = e.target.value;
+    if (value === "") {
+      setCount(0);
+      return;
+    }
+    const numValue = parseInt(value);
+    if (!isNaN(numValue)) {
+      setCount(numValue);
     }
   };
 
@@ -54,8 +59,6 @@ export function RecordCountControl({
           type="number"
           value={count}
           onChange={handleInputChange}
-          min={min}
-          max={max}
           className="h-8 w-16 rounded-none text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         <Button
